@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ash Calculator</title>
+    <style>
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .out {
+        width: 100%;
+        max-width: 400px;
+        margin: 20px;
+        border: 2px solid black;
+        background-color: rgb(99, 91, 91);
+        border-radius: 30px;
+        padding: 20px;
+        box-sizing: border-box;
+      }
+      .inpdiv {
+        display: flex;
+        justify-content: center;
+      }
+      .inp {
+        width: 100%;
+        border-radius: 30px;
+        background-color: rgb(20, 122, 20);
+        border: none;
+        color: black;
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: right;
+        padding: 10px 20px;
+        box-sizing: border-box;
+      }
+      #keys {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 10px;
+        margin-top: 10px;
+      }
+      button {
+        height: 60px;
+        width: 60px;
+        border-radius: 50%;
+        color: black;
+        font-size: 1.5rem;
+        font-weight: bold;
+        text-align: center;
+        transition: all 0.2s ease-in-out;
+      }
+      .corner {
+        background-color: greenyellow;
+      }
+      .cor {
+        background-color: orange;
+      }
+      .m {
+        background-color: gray;
+      }
+      @media (max-width: 767px) {
+        .inp {
+          font-size: 1.5rem;
+        }
+        button {
+          height: 50px;
+          width: 50px;
+          font-size: 1.2rem;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .out {
+          max-width: 400px;
+        }
+        .inp {
+          font-size: 2.5rem;
+        }
+        button {
+          height: 80px;
+          width: 80px;
+          font-size: 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="out">
+      <div class="inpdiv">
+        <input class="inp" id="inputnum" readonly />
+      </div>
+      <div id="keys">
+        <button class="m">mr</button>
+        <button class="m">m-</button>
+        <button class="m">m+</button>
+        <button onclick="display('/')" class="corner">/</button>
+        <button onclick="display('7')">7</button>
+        <button onclick="display('8')">8</button>
+        <button onclick="display('9')">9</button>
+        <button onclick="display('*')" class="corner">*</button>
+        <button onclick="display('4')">4</button>
+        <button onclick="display('5')">5</button>
+        <button onclick="display('6')">6</button>
+        <button onclick="display('-')" class="corner">-</button>
+        <button onclick="display('1')">1</button>
+        <button onclick="display('2')">2</button>
+        <button onclick="display('3')">3</button>
+        <button onclick="display('+')" class="corner">+</button>
+        <button onclick="display('0')">0</button>
+        <button onclick="display('.')">.</button>
+        <button onclick="cleardisplay()">C</button>
+        <button onclick="calculate()" class="cor">=</button>
+      </div>
+    </div>
+
+    <script>
+      var input = document.getElementById("inputnum");
+
+      function display(value) {
+        input.value += value;
+      }
+
+      function calculate() {
+        try {
+          input.value = eval(input.value);
+        } catch (error) {
+          input.value = "Syntax Error";
+        }
+      }
+
+      function cleardisplay() {
+        input.value = "";
+      }
+    </script>
+  </body>
+</html>
